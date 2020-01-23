@@ -31,7 +31,4 @@ export class UsersDataSourceService {
       })
     );
   }
-  getFullList(): void {
-    this.subject.next(this.users);
-  }
 }
