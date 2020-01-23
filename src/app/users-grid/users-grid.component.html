@@ -28,13 +28,19 @@
       </th>
       <th scope="col">
         IP
+        <app-filter
+          colId="ip_address"
+          (handleFilter)="filterCol($event)"
+        ></app-filter>
+      </th>
+      <th>
         <button
           *ngIf="showIp"
           type="button"
           (click)="toggleIp()"
           class="btn btn-primary"
         >
-          Hide
+          Hide IP
         </button>
         <button
           *ngIf="!showIp"
@@ -42,7 +48,7 @@
           (click)="toggleIp()"
           class="btn btn-primary"
         >
-          Show
+          Show IP
         </button>
       </th>
     </tr>

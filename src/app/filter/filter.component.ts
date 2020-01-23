@@ -4,15 +4,15 @@ import {
   Input,
   EventEmitter,
   Output,
-  OnDestroy
-} from "@angular/core";
-import { Subject } from "rxjs";
-import { debounceTime } from "rxjs/operators";
-import { IFilter } from "./interfaces/filter.interface";
+  OnDestroy,
+} from '@angular/core';
+import {Subject} from 'rxjs';
+import {debounceTime} from 'rxjs/operators';
+import {IFilter} from './interfaces/filter.interface';
 @Component({
-  selector: "app-filter",
-  templateUrl: "./filter.component.html",
-  styleUrls: ["./filter.component.css"]
+  selector: 'app-filter',
+  templateUrl: './filter.component.html',
+  styleUrls: ['./filter.component.css'],
 })
 export class FilterComponent implements OnInit, OnDestroy {
   @Input() colId: string;
@@ -25,9 +25,9 @@ export class FilterComponent implements OnInit, OnDestroy {
   }
   ngOnInit() {
     this.subject
-      .pipe(debounceTime(0)) // to give the user time to type before making the filter
+      .pipe(debounceTime(250)) // to give the user time to type before making the filter
       .subscribe(text =>
-        this.handleFilter.emit({ colId: this.colId, val: text })
+        this.handleFilter.emit({colId: this.colId, val: text})
       );
   }
   ngOnDestroy(): void {

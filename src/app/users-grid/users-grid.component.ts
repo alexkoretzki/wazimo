@@ -1,14 +1,14 @@
-import { Component, OnInit, ViewChildren, QueryList } from "@angular/core";
-import { UsersDataSourceService } from "./services/users-data-source.service";
-import { Observable } from "rxjs";
-import { User } from "./interfaces/user.interface";
-import { IFilter } from "../filter/interfaces/filter.interface";
-import { FilterComponent } from "../filter/filter.component";
+import {Component, OnInit, ViewChildren, QueryList} from '@angular/core';
+import {UsersDataSourceService} from './services/users-data-source.service';
+import {Observable} from 'rxjs';
+import {User} from './interfaces/user.interface';
+import {IFilter} from '../filter/interfaces/filter.interface';
+import {FilterComponent} from '../filter/filter.component';
 
 @Component({
-  selector: "app-users-grid",
-  templateUrl: "./users-grid.component.html",
-  styleUrls: ["./users-grid.component.css"]
+  selector: 'app-users-grid',
+  templateUrl: './users-grid.component.html',
+  styleUrls: ['./users-grid.component.css'],
 })
 export class UsersGridComponent implements OnInit {
   users$: Observable<User[]>;
@@ -40,10 +40,13 @@ export class UsersGridComponent implements OnInit {
         }
       });
     } else {
-      this.filters.forEach(filter => {
-        filter.isDisabled = false;
-      });
+      this.enableFilters();
     }
+  }
+  enableFilters() {
+    this.filters.forEach(filter => {
+      filter.isDisabled = false;
+    });
   }
   trackByFn(index, item) {
     return item.id;

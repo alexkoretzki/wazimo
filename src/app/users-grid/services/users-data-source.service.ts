@@ -1,10 +1,10 @@
-import { User } from "./../interfaces/user.interface";
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpResponse } from "@angular/common/http";
-import { Subject, Observable } from "rxjs";
-import { IFilter } from "src/app/filter/interfaces/filter.interface";
+import {User} from './../interfaces/user.interface';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpResponse} from '@angular/common/http';
+import {Subject, Observable} from 'rxjs';
+import {IFilter} from 'src/app/filter/interfaces/filter.interface';
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root',
 })
 export class UsersDataSourceService {
   private users: User[] = [];
@@ -13,7 +13,7 @@ export class UsersDataSourceService {
 
   loadUsers(): void {
     this.http
-      .get("https://storage.googleapis.com/static.aoni.io/demo/user.json")
+      .get('https://storage.googleapis.com/static.aoni.io/demo/user.json')
       .subscribe((res: User[]) => {
         this.users = res;
         this.subject.next(this.users);
@@ -30,5 +30,8 @@ export class UsersDataSourceService {
           .startsWith(filterRule.val);
       })
     );
+  }
+  getFullList(): void {
+    this.subject.next(this.users);
   }
 }
