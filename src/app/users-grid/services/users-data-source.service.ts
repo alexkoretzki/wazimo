@@ -12,12 +12,10 @@ export class UsersDataSourceService {
   constructor(private http: HttpClient) {}
 
   loadUsers(): void {
-    this.http
-      .get('https://storage.googleapis.com/static.aoni.io/demo/user.json')
-      .subscribe((res: User[]) => {
-        this.users = res;
-        this.subject.next(this.users);
-      });
+    this.http.get('/static.aoni.io/demo/user.json').subscribe((res: User[]) => {
+      this.users = res;
+      this.subject.next(this.users);
+    });
   }
   getUsers(): Observable<User[]> {
     return this.subject;
